@@ -1,5 +1,4 @@
 {
-  "name": "Hello World",
   "short_name": "Hello",
   "icons": [
     {
@@ -17,5 +16,5 @@
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "blue",
-  "theme_color": "yellow"
+  "theme_color": "yellow",
 }
