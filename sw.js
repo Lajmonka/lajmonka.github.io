@@ -14,13 +14,15 @@ self.addEventListener('install', function(e) {
 });
 
 /* Serve cached content when offline */
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request).then(function(response) {
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open(cacheName).then(function(cache) {
+      return cache.match(event.request).then(function (response) {
+        return response || fetch(event.request).then(function(response) {
           cache.put(event.request, response.clone());
           return response;
-        });;
+        });
+      });
     })
   );
 });
