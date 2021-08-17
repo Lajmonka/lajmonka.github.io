@@ -13,19 +13,19 @@
 <h1>My First Heading</h1>
 <p>My first paragraph.</p>
   
-  <button id="btn">klik</button>
+  <!-- <button id="btn">klik</button> -->
 
   <script>
   window.onload = () => {
   'use strict';
 
-  var button = document.getElementById('btn');
+  //var button = document.getElementById('btn');
     
     
-  button.addEventListener('click', function() {
+  //button.addEventListener('click', function() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js'); }
-  })
+  //})
                       
 }
 </script>
