@@ -1,7 +1,7 @@
 {
   "short_name": "Hello",
   "name": "Hello name",
-  "start_url": "/test-pwa/",
+  "start_url": "./test-pwa/",
   "icons": [
     {
       "src": "/test-pwa/fox-icon.png",
@@ -12,7 +12,7 @@
       "src": "/test-pwa/fox-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "maskable"
     }
   ],
   "lang": "pl",
