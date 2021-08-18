@@ -63,7 +63,9 @@
     
   //button.addEventListener('click', function() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/test-pwa/sw.js'); }
+    navigator.serviceWorker.register('/sw.js', {
+  scope: '/test-pwa/'
+}); }
   //})
                       
 }
