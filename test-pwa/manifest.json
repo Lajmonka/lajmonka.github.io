@@ -1,7 +1,8 @@
 {
   "short_name": "Hello",
   "name": "Hello name",
-  "start_url": "/test-pwa/",
+  "start_url": "/test-pwa/index.html",
+  "scope":"/test-pwa/",
   "icons": [
     {
       "src": "/test-pwa/fox-icon.png",
