@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" href="/test-pwa/fox-icon.png">
   <link rel="manifest" href="/test-pwa/manifest.json"> 
+  <link rel="canonical" href="https://lajmonka.github.io/test-pwa/" />
   <meta name="theme-color" content="#317EFB"/>
   <meta name="description" content="Test pwa site">
   
@@ -63,9 +64,8 @@
     
   //button.addEventListener('click', function() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/test-pwa/sw.js', {
-  scope: '/test-pwa/'
-}); }
+    navigator.serviceWorker.register('/test-pwa/sw.js', {scope: '/test-pwa/'}); 
+  }
   //})
                       
 }
