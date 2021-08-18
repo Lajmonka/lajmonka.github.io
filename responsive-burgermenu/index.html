@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+    <script src="https://code.jquery.com/git/jquery-3.x-git.min.js"></script>
+    <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+        crossorigin="anonymous"></script>
+    <style>
+
+    /* GLOBAL */
+        @font-face {
+            font-family: "icon";
+            src: url(icon.woff); 
+        }   
+
+        html {
+            /* font-size: 100% */
+            font-size: 1em;
+            font-family: NotoSans,Arial,"Arial Unicode MS",sans-serif;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        header {
+            text-align: right;    /* for menu burger */
+            background-color: #373433;
+        }
+
+        nav {
+            position: absolute;
+            right: 0;
+            width: 90%;
+            border-bottom: 1px solid rgba(0,0,0,0.15);
+            border-left: 1px solid rgba(0,0,0,0.15);
+            border-right: 1px solid rgba(0,0,0,0.15);
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            list-style-type: none;    /* list - no bullets */
+        }
+
+
+
+
+
+    /* LAYOUT DISPLAY FLEX */
+        li {
+            display: flex; 
+            justify-content: space-between;  
+            flex-wrap: nowrap; 
+        }
+
+        a.left {
+            align-self: center; 
+            display: flex;
+            overflow: auto;
+        }
+
+        .category-text {
+            align-self: flex-end;
+            color: #4a6da7;
+        }
+
+
+
+
+
+    /* COMMON style */
+        .btn-collapse,
+        .btn-menu {
+            border: 0;
+            background: none;
+            font-size: 1.5em;
+            padding: 0.25em;
+            cursor: pointer;
+        }
+
+        .wrapp-icon-arrows,
+        .wrapp-icon-menu {
+            padding: 0.2084em;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .base-icon {
+            line-height: 1;
+            font-family: "icon";
+            font-style: normal;
+            color: #757575;
+        }
+
+
+
+
+
+    /* UnCATEGORIZED */
+        /* button element style for btn-menu-open controller */
+        .btn-menu {
+            position: relative;
+        }
+
+        /* padding for li element */
+        li.child-category .left {
+            padding-left: 1.5em;
+        }
+
+
+        .padding {
+            padding-left: 0.75em;
+        }
+
+        li.child-category,
+        li.parent-category:last-child {
+            border-top: 1px dotted #9e9c9b;
+        }
+
+        li.parent-category:first-child {
+            border-bottom: 1px dotted #9e9c9b;
+        }
+
+        .left {
+            text-decoration: none;
+            /* focus key */
+                padding-left: 1.5em;
+                padding: 0.75em;
+                width: 100%;
+                margin-right: 0.75em;
+        }
+        .left i {
+            font-size: 1.5em;
+        }
+
+        .left:focus-visible,
+        .left:focus {
+            text-decoration: underline;
+        }
+
+        li.parent-category {
+            text-transform: uppercase;
+            border-bottom: 1px dotted #9e9c9b;
+        }
+
+
+
+
+
+    /* WRAPPER ICONS (button element)*/
+        /* (arrows) */
+        .wrapp-icon-arrows {
+            background: #f7f7f7;
+            color: #757575;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        }
+    
+        /* (menu hamburger bar) */
+        .wrapp-icon-menu {
+            color: #fff;
+            /* for min size button 48px as same btn-collapse arrow */
+            border: 1px solid transparent;
+        }
+
+
+    /* ICONS (show me) */
+        /* button elemets */
+        .icon-arrow-down::before {
+            content: "\E602";
+        }
+
+        .icon-arrow-up::before {
+            content: "\E605";
+        }
+
+        .icon-menu::before {
+            content: "\E653";
+        }
+
+
+        /* category list items */
+        .icon-library::before {
+            content: "\E646";
+        }
+
+        .icon-books::before {
+            content: "\E614";
+        }
+
+        .icon-home::before {
+            content: "\E636";
+        }
+
+
+
+
+
+    /* SCREEN READERS text */
+        .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px; 
+        }
+
+
+
+
+
+    /* MINI-ARROW burger controler (open after CLICK MENU) */
+        .btn-menu-open::after {
+            bottom: 0;
+            content: '';
+            display: block;
+            position: absolute;
+            height: 0;
+            width: 0;
+            border-bottom: 5px solid #fff;
+            border-left: 6px inset transparent;
+            border-right: 6px inset transparent;
+            transition: margin-left 0.4s ease-in-out, bottom 0.4s ease-in-out; /* sprawdź działanie z js */
+            /* centered - borders 12px (50%-12%=38%) */
+            right: 38%; 
+        }
+
+
+
+
+
+    /* ACTIVE list items with active link match url */
+        li.active-list {
+            background: #f7f7f7;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+
+
+
+    /* ACTIVE CURRENT LINK */
+    .primary-active {
+            background-color: #f0f0f0;
+            border-left: 5px solid #4a6da7; }
+
+        /*
+        * pozycjonowanie
+        * potomek primary-active
+        * primary-active wpływa na potomny element - niepożądane przesunięcie w lewo o 5px 
+        */
+        .item-block_item-element {
+            position: relative;
+            left: -5px; 
+            align-self: center;
+            display: flex;
+            overflow: auto; }
+
+        .item-block_item-element:focus {
+            text-decoration: none;
+            margin-right: 0; 
+        }
+
+        .font-active {
+            font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="btn-menu"><i class="base-icon wrapp-icon-menu icon-menu"><spam class="sr-only">Pokaż kategorie</spam></i></button>
+    </header>
+    <noscript class="noscript">
+    <nav>
+        <ul>
+            <li class="parent-category primary-active">
+                <span class="left item-block_item-element" tabindex="0" aria-current="page"><i class="base-icon icon-home"></i><spam class="category-text padding font-active">Strona główna</spam></span>
+            </li>
+            <li class="parent-category ">
+                <a class="left" href=""><i class="base-icon icon-library"></i><spam class="category-text padding">Biblioteka</spam></a>
+                <button class="btn-collapse"><i class="base-icon wrapp-icon-arrows icon-arrow-down"><spam class="sr-only">Pokaż kategorie</spam></i></button>
+            </li>
+                <ul class="acordeonList">
+                    <li class="child-category ">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category ">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category ">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                </ul>
+            <li class="parent-category">
+                <a class="left" href=""><i class="base-icon icon-library"></i><spam class="category-text padding">Biblioteka</spam></a>
+                <button class="btn-collapse"><i class="base-icon wrapp-icon-arrows icon-arrow-down"><spam class="sr-only">Pokaż kategorie</spam></i></button>
+            </li>
+                <ul class="acordeonList">
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                </ul>   
+            <li class="parent-category">
+                <a class="left" href=""><i class="base-icon icon-library"></i><spam class="category-text padding">Biblioteka</spam></a>
+                <button class="btn-collapse"><i class="base-icon wrapp-icon-arrows icon-arrow-down"><spam class="sr-only">Pokaż kategorie</spam></i></button>
+            </li>
+                <ul class="acordeonList">
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                    <li class="child-category">
+                        <a class="left" href=""><i class="base-icon icon-books"></i><spam class="category-text padding">Książki i broszury</spam></a>
+                    </li>
+                </ul> 
+        </ul>
+    </nav>
+</noscript>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function(event) {
+            console.log('DOM fully loaded and parsed');
+    
+            // $( "head" ).append( '<link rel="stylesheet" href="btn.css">' );
+            // $( ".parent" ).append( '<button><i class="idwn"></i><span class="sr-only">Pokaż podkategorie</span></button>' );
+            // $( ".parent" ).after( '<ul class="child"><li><a href="" class="left"><i></i><span class="text ">Strona główna</span></a></li><li class=""><a href="" class="left"><i></i><span class="text">Strona główna</span></a></li><li class=""><a href="" class="left"><i></i><span class="text">Strona główna</span></a></li></ul>' );
+            // $( ".acordeonList" ).css( "display", "none" ); 
+
+            // zapobieganie migawki podczas przeładowania strony
+            $('.noscript').replaceWith(function() { return $(this).html(); })
+            $( "nav" ).css("display", "none");
+
+
+            // click burger 
+            $(".btn-menu").click(function() {
+                
+                $(this).toggleClass("btn-menu-open").parent().next().toggle( "slide", { direction: "right" }, 400 );
+                $( ".acordeonList" ).css( "display", "none" );
+                $( "body" ).css("overflow", "hidden");
+                
+            });
+
+
+            // click arrow
+            $(".btn-collapse").click(function() {
+                
+                var $currentNotHide = $(this).parent().next().add( $(this) );
+                var $currentNotRemoveClass = $(this).parent().add( $(this) );
+                var $currentNotChageArrow = $(this).children().add( $(this) );
+
+                $('.acordeonList').not($currentNotHide).hide("1000");                
+                $('.parent-category').not($currentNotRemoveClass).removeClass("active-list");
+                $('.btn-collapse').not($currentNotChageArrow).children().removeClass("icon-arrow-up");
+                $('.btn-collapse').not($currentNotChageArrow).children().addClass("icon-arrow-down");
+
+                $(this).children().toggleClass("icon-arrow-down icon-arrow-up");
+
+                $(this).parent().toggleClass("active-list").next().addClass("active-list").children().addClass("active-list").parent().slideToggle("1500")
+            })
+                
+        })
+        </script>
+
+</body>
+</html>
