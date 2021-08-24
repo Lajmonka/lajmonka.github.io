@@ -3,7 +3,8 @@ var VERSION = 'version_03'              // Version of the off-line cache (change
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   '/test-pwa/',
-  '/test-pwa/index.html'
+  '/test-pwa/index.html',
+  '/test-pwa/manifest.json'
 ];
 
 // Respond with cached resources
