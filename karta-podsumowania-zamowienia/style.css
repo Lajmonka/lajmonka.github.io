@@ -1,0 +1,202 @@
+
+
+@font-face {
+    font-family: "RedHatM";
+    src: url("font/RedHatDisplay-Medium.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "RedHatBl";
+    src: url("font/RedHatDisplay-Bold.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "RedHatB";
+    src: url("font/RedHatDisplay-Black.ttf") format("truetype");
+  }
+
+
+/*
+*rwd
+*/
+@media (max-width: 449px) {
+    .os-card {
+        width: 375px;
+    }
+    .os-card__img {
+        max-width: 450px;
+    }
+ }
+
+@media (min-width: 450px) {
+    .os-card {
+        width: 450px;
+    }
+ }
+
+ .os-card {
+  text-align: center;
+  margin: auto;
+    
+} 
+
+body {
+    font-family: "RedHatM";
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+}
+
+body,
+article,
+h1,
+p {
+    margin: 0;
+}
+
+.os-card__btn--buy a, 
+.os-card__btn--cancel a {
+    text-decoration: none;
+    color: #807C79;
+}
+
+.os-card__btn--change a {
+    color: #322ACF;
+}
+
+/* 
+* czcionki
+*/
+.os-card__title {
+    font-family: "RedHatB";
+    font-weight: 900;
+    font-size: 1.4em;
+    margin-top: 1em;
+}
+
+.os-card__desc,
+.os-card__price {
+    font-family: "RedHatM";
+    font-weight: 500;
+}
+
+.os-card__plan,
+.os-card__btn--buy,
+.os-card__btn--cancel,
+.os-card__btn--change {
+    font-family: "RedHatBl";
+    font-weight: 700;
+}
+
+
+/*
+* kolory
+*/
+.os-card__desc,
+.os-card__price,
+.os-card__btn--cancel {
+    color: #807C79;
+}
+
+.os-card__btn--change {
+    color: #322ACF;
+    margin-left: auto;
+}
+
+.os-card__btn--buy {
+    background-color: #322ACF;
+    padding: 1.1em 0;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 30px 35px -20px #382AE1; 
+    box-shadow: 0px 30px 35px -20px #382AE1;
+}
+.os-card__btn--buy a {
+    color: white;
+}
+
+
+/*
+* rozmiary (marginesy i dopełnienia)
+*/
+.os-card__btn--buy,
+.os-card__btn--cancel {
+    margin: 1.7em auto;
+    width: 100%;
+    font-size: 0.9em;
+    
+}
+
+.os-card__plan-inner, 
+.os-card__desc {
+    margin-top: 1em;
+}
+
+.os-card__content-inner {
+    margin: 0 3.5em;
+}
+
+.os-card__plan-inner {
+    padding: 1em;
+    background-color: #F8F9FE;
+    display: flex;
+    align-items: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/*
+* prezentacja
+*/
+
+.os-card__btn--cancel,
+.os-card__btn--buy,
+.os-card__btn--change {
+    display: block;
+    border: none;
+}
+
+.os-card__btn--cancel,
+.os-card__btn--change {
+    background-color: initial;
+}
+
+.os-card__desc,
+.os-card__title {
+    text-align: center;
+}
+
+.os-card__plan,
+.os-card__price {
+    display: block;
+}
+
+.os-card__plan-inner::before {
+    content: url(images/icon-music.svg);
+    width: 48px;
+    height: 48px;
+}
+
+.os-card__price-inner {
+    margin-left: 1.2em;
+    font-size: 0.9em;
+}
+
+.os-card__margin-inner {
+    margin: 1.7em 2.5em;
+}
+
+.os-card__btn--cancel {
+    font-size: 1rem;
+    margin-top: 0;
+    
+}
+
+.os-card__img {
+    width: 100%;
+}
